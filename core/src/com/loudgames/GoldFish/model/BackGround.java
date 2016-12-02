@@ -6,46 +6,23 @@
 package com.loudgames.GoldFish.model;
 
 import com.badlogic.gdx.math.Vector2;
-import com.loudgames.GoldFish.view.BoardLoad;
-import java.awt.Rectangle;
 
 /**
  *
  * @author Michael
  */
-public class BackGround {
-    
-    private Vector2 position = new Vector2();
-    Vector2 velocity=new Vector2();
-    private Rectangle bounds = new Rectangle();
-    private boolean onScreen=true;
+public class BackGround extends Actors{
 
-    private float movingAngle=0;
-    
-    private int boardWidth;
-    private int boardHeight;
-    private static final int HEIGHT=700;
-    private static final int WIDTH=1200;
-    
-    
     //constructor
     public BackGround(Vector2 position){
-       bounds.height=HEIGHT;
-       bounds.width=WIDTH;
-       
-       boardWidth=BoardLoad.boardWidth;
-       boardHeight=BoardLoad.boardHeight;
-       
-       this.velocity.add(3,0);
-       this.position=position;
-    }
-    
-    public void increasePosition(){
-        position.x-=2;
+       super(position);
+       setWIDTH(700);
+       setHEIGHT(1200);
     }
 
-    public Vector2 getPosition() {
-        return position;
+    @Override
+    public void move() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

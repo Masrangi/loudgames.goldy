@@ -18,17 +18,23 @@ public class FishController implements InputProcessor{
 
     @Override
     public boolean keyDown(int keycode) {
-        if(Input.Keys.ENTER==keycode){
-          BoardLoad.theFish.setMovingState(true);
-        }
-        if(BoardLoad.theFish.getMovingState()){
+//        if(Input.Keys.ENTER==keycode){
+//          BoardLoad.theFish.setMovingState(true);
+//        }
+//        if(BoardLoad.theFish.getMovingState()){
             if(Input.Keys.UP==keycode){
               BoardLoad.theFish.setPositionUp();
             }
-            if(Input.Keys.DOWN==keycode){
+            else if(Input.Keys.DOWN==keycode){
               BoardLoad.theFish.setPositionDown();
             }
-        }
+            else if(Input.Keys.RIGHT==keycode){
+              BoardLoad.theFish.setPositionForward();
+            }
+            else if(Input.Keys.LEFT==keycode){
+              BoardLoad.theFish.setPositionBackward();
+            }
+//        }
         return true;
     }
 

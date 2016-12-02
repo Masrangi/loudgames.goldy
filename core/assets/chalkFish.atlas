@@ -1,0 +1,19 @@
+
+chalkFish.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+fish1
+  rotate: false
+  xy: 1, 416
+  size: 571, 404
+  orig: 571, 404
+  offset: 0, 0
+  index: -1
+fish2
+  rotate: false
+  xy: 1, 1
+  size: 559, 413
+  orig: 559, 413
+  offset: 0, 0
+  index: -1

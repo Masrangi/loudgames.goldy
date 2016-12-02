@@ -13,18 +13,20 @@ import java.awt.Rectangle;
  *
  * @author Michael
  */
-public class Iceberg extends Actors{
-     public Iceberg(Vector2 position){
+public class Plank extends Actors{
+    
+    
+    public Plank(Vector2 position){
     super(position);
-    setWIDTH(120);
-    setHEIGHT(100);
+    setWIDTH(80);
+    setHEIGHT(60);
     setSpeed(2);
     }
 
     @Override
     public void move() {
         if(isOnScreen()){
-        setBounds(); 
+        setBounds();   
         BoardLoad.theFish.setBounds();
         Rectangle fishBounds=BoardLoad.theFish.getBounds();
         if(fishBounds.intersects(getBounds())){
@@ -42,7 +44,4 @@ public class Iceberg extends Actors{
          setOnScreen(false);
         }
     }
-    }
-    
-
-
+}
