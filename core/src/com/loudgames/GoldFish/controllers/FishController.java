@@ -8,6 +8,7 @@ package com.loudgames.GoldFish.controllers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.loudgames.GoldFish.model.GoldFish;
 import com.loudgames.GoldFish.view.BoardLoad;
 
 /**
@@ -18,10 +19,6 @@ public class FishController implements InputProcessor{
 
     @Override
     public boolean keyDown(int keycode) {
-//        if(Input.Keys.ENTER==keycode){
-//          BoardLoad.theFish.setMovingState(true);
-//        }
-//        if(BoardLoad.theFish.getMovingState()){
             if(Input.Keys.UP==keycode){
               BoardLoad.theFish.setPositionUp();
             }
@@ -29,9 +26,11 @@ public class FishController implements InputProcessor{
               BoardLoad.theFish.setPositionDown();
             }
             else if(Input.Keys.RIGHT==keycode){
+                BoardLoad.theFish.setMovingState(GoldFish.FORWARD);
               BoardLoad.theFish.setPositionForward();
             }
             else if(Input.Keys.LEFT==keycode){
+                BoardLoad.theFish.setMovingState(GoldFish.BACKWARD);
               BoardLoad.theFish.setPositionBackward();
             }
 //        }
@@ -40,7 +39,10 @@ public class FishController implements InputProcessor{
 
     @Override
     public boolean keyUp(int keycode) {
-        return false;
+            if(Input.Keys.RIGHT==keycode||Input.Keys.LEFT==keycode){
+                BoardLoad.theFish.setMovingState(GoldFish.NEUTRAL);
+            }
+        return true;
     }
 
     @Override

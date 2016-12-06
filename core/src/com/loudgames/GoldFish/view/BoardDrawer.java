@@ -7,16 +7,11 @@ package com.loudgames.GoldFish.view;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.loudgames.GoldFish.model.Actors;
 import com.loudgames.GoldFish.model.BackGround;
 import com.loudgames.GoldFish.model.GoldFish;
-import static com.loudgames.GoldFish.view.BoardLoad.actors;
-import java.util.Random;
 
 /**
  *
@@ -27,13 +22,23 @@ public class BoardDrawer {
     
     private SpriteBatch batch;
     private Texture fish;
+    private Texture fish1;
+    private Texture fish2;
     private Texture iceberg;
     private Texture plank;
     private Texture coin;
     private Texture background;
     
+    private String name;
+    
     private BackGround thebackground;
+    private String ocean;
     private GoldFish theFish;
+    
+    
+    
+    private static int count=0;
+    private static int countfish=0;
     
 //    private TextureAtlas fishAtlas;
 //    private Animation animation;
@@ -83,28 +88,51 @@ public class BoardDrawer {
      
     }
      
+     private void assignfish(){
+           countfish++;
+      if(countfish<=15)
+      {
+      fish=new Texture("fish1.png");
+      }
+      else if(countfish>15 && countfish<30)
+     {
+     fish=new Texture("fish2.png");
+     }
+     else
+     {
+     countfish=0;
+     }
+     }
+     
+     private void assignOcean(){
+         count+=1;
+      name="ocean"+count+".png";
+      if(count==6)
+      {
+      count=0;
+      }
+     if(timepassed%10==0)
+     {
+     background=new Texture(name);
+     }
+     timepassed+=1;
+     
+     }
+     
     public void drawGoldFish(){  
         if(theFish.isOnScreen()){
-        if(timepassed<10)
-        {
-        timepassed+=1;
-        fish=new Texture("fish1.png");
-        }
-        else if(timepassed<20 && timepassed>=10)
-        {
-        timepassed+=1;
-        fish=new Texture("fish2.png");
-        }
-        else{timepassed=0;}
+            assignfish();
         batch.draw(fish, theFish.getPosition().x, theFish.getPosition().y, 
             theFish.getWIDTH(), theFish.getHEIGHT());}
 
 //    timepassed+=Gdx.graphics.getDeltaTime();
 //        batch.draw(animation.getKeyFrame(timepassed, true),theFish.getPosition().x,theFish.getPosition().y);
-
+        theFish.move();
     }
+
     
     public void drawBackground(){
+    assignOcean();
         batch.draw(this.background,thebackground.getPosition().x,thebackground.getPosition().y,
             BoardLoad.boardWidth,BoardLoad.boardHeight);
     

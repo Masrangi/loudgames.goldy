@@ -13,21 +13,34 @@ import com.loudgames.GoldFish.view.BoardLoad;
  * @author Michael
  */
 public class GoldFish extends Actors{
+    public static final int FORWARD=1;
+    public static final int BACKWARD=2;
+    public static final int NEUTRAL=0;
     
-    private static boolean movingState;
+    private static int movingState;
+
+    public static int isMovingState() {
+        return movingState;
+    }
     
     //constructor
     public GoldFish(Vector2 position){
         super(position);
         setWIDTH(110);
         setHEIGHT(90);
-        this.setSpeed(2);
+        setSpeed(1);
+        movingState=NEUTRAL;
     }
     
 
     @Override
     public void move(){
-        
+        if(movingState==FORWARD){
+            setPositionForward();
+        }
+        else if(movingState==BACKWARD){
+        this.setPositionBackward();
+        }
     }
     
     
@@ -63,11 +76,11 @@ public class GoldFish extends Actors{
     }
  
     
-    public boolean getMovingState() {
+    public int getMovingState() {
         return movingState;
     }
 
-    public void setMovingState(boolean aMovingState) {
+    public void setMovingState(int aMovingState) {
         movingState = aMovingState;
     }
 }
