@@ -5,10 +5,13 @@
  */
 package com.loudgames.GoldFish.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.loudgames.GoldFish.model.Actors;
 import com.loudgames.GoldFish.model.BackGround;
 import com.loudgames.GoldFish.model.GoldFish;
@@ -40,11 +43,14 @@ public class BoardDrawer {
     private static int count=0;
     private static int countfish=0;
     
-//    private TextureAtlas fishAtlas;
-//    private Animation animation;
+    private TextureAtlas oceanAtlas;
+    private Animation animation;
+    private float elapsedTime = 0;
+    
+    private TextureAtlas fishAtlas;
+    private Animation animationFish;
+    
     //
-    long startTime = 0;
-    int timepassed=0;
     private BitmapFont score; 
     
     public BoardDrawer(boolean debug){
@@ -57,24 +63,21 @@ public class BoardDrawer {
 //      this.debug=debug;
         loadTextures();
         startScoreBoard();
-//        animation=new Animation(1/60f,fishAtlas.getRegions());
-        
-        
     }
 
     private void loadTextures() {
-        fish=new Texture("fish1.png");
         iceberg=new Texture("iceberg.png");
         plank=new Texture("plank.png");
-        background=new Texture("ocean.png");
         coin=new Texture("coins.png");
-//        fishAtlas=new TextureAtlas("chalkFish.atlas");
+        
+        oceanAtlas = new TextureAtlas("ocean.pack");
+        animation = new Animation(1/7f, oceanAtlas.getRegions());
+        fishAtlas = new TextureAtlas("fish.pack");
+        animationFish = new Animation(1/7f, fishAtlas.getRegions());
     }
     
      public void paint(){
-//     batch.setProjectionMatrix(camera.combined);
      batch.begin();
-//   setCamera();  
      BoardLoad.createObstacle();
      drawBackground();
      drawGoldFish();
@@ -104,48 +107,25 @@ public class BoardDrawer {
      }
      }
      
-     private void assignOcean(){
-         count+=1;
-      name="ocean"+count+".png";
-      if(count==6)
-      {
-      count=0;
-      }
-     if(timepassed%10==0)
-     {
-     background=new Texture(name);
-     }
-     timepassed+=1;
-     
-     }
-     
     public void drawGoldFish(){  
         if(theFish.isOnScreen()){
             assignfish();
         batch.draw(fish, theFish.getPosition().x, theFish.getPosition().y, 
-            theFish.getWIDTH(), theFish.getHEIGHT());}
+            theFish.getWIDTH(), theFish.getHEIGHT());
 
-//    timepassed+=Gdx.graphics.getDeltaTime();
-//        batch.draw(animation.getKeyFrame(timepassed, true),theFish.getPosition().x,theFish.getPosition().y);
-        theFish.move();
+//        batch.draw(animationFish.getKeyFrame(timepassed, true),theFish.getPosition().x,theFish.getPosition().y,
+//                theFish.getWIDTH(),theFish.getHEIGHT());
+        theFish.move();}
+        
     }
 
     
     public void drawBackground(){
-    assignOcean();
-        batch.draw(this.background,thebackground.getPosition().x,thebackground.getPosition().y,
-            BoardLoad.boardWidth,BoardLoad.boardHeight);
+        elapsedTime += Gdx.graphics.getDeltaTime();
+        batch.draw(animation.getKeyFrame(elapsedTime, true),0,0,this.thebackground.getHEIGHT(),this.thebackground.getWIDTH());
     
     }
 
-//    private void setCamera() {
-////     if(theFish.getMovingState())
-////        {   
-////     camera.translate(2,0);
-////     camera.update();
-////    }
-//////     thebackground.increasePosition();
-//    }
     
     private void drawIceberg() {
         for(Actors x:BoardLoad.icebergs){

@@ -1,0 +1,60 @@
+
+ocean.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+oc1
+  rotate: false
+  xy: 1, 1
+  size: 1000, 700
+  orig: 1000, 700
+  offset: 0, 0
+  index: -1
+
+ocean2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+oc2
+  rotate: false
+  xy: 1, 1
+  size: 1000, 700
+  orig: 1000, 700
+  offset: 0, 0
+  index: -1
+
+ocean3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+oc3
+  rotate: false
+  xy: 1, 1
+  size: 1000, 700
+  orig: 1000, 700
+  offset: 0, 0
+  index: -1
+
+ocean4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+oc4
+  rotate: false
+  xy: 1, 1
+  size: 1000, 700
+  orig: 1000, 700
+  offset: 0, 0
+  index: -1
+
+ocean5.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+oc5
+  rotate: false
+  xy: 1, 1
+  size: 1000, 700
+  orig: 1000, 700
+  offset: 0, 0
+  index: -1
