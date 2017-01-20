@@ -10,16 +10,22 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.loudgames.GoldFish.controllers.FishController;
+import com.loudgames.GoldFish.controllers.GoldFishEscape;
 
 /**
  *
  * @author Michael
  */
 public class GameScreen implements Screen{
-    
+    final GoldFishEscape game;
     private BoardLoad board;
     private BoardDrawer gbd;
     FishController fishController;
+
+    GameScreen(GoldFishEscape game) {
+        this.game = game;
+    }
+    
     @Override
     public void show() {
         

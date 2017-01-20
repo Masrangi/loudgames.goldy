@@ -6,7 +6,10 @@
 package com.loudgames.GoldFish.controllers;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.loudgames.GoldFish.view.GameScreen;
+import com.loudgames.GoldFish.view.LoadScreen;
+import com.loudgames.GoldFish.view.MenuScreen;
 
 
 
@@ -16,9 +19,34 @@ import com.loudgames.GoldFish.view.GameScreen;
  */
 public class GoldFishEscape extends Game {
 
+    public SpriteBatch batch;
     @Override
     public void create() {
-        setScreen(new GameScreen());
+        batch=new SpriteBatch();
+        this.setScreen(new MenuScreen(this));
     }
     
+//    public void setGameScreen()
+//    {
+////        setScreen(new GameScreen());
+//    }
+//    public void setMenuScreen()
+//    {
+////        setScreen(new MenuScreen());
+//    }
+//    
+//    public void setLoadScreen()
+//    {
+////        setScreen(new LoadScreen());
+//    }
+    
+    @Override
+    public void render(){
+        super.render();
+    }
+    
+    @Override
+    public void dispose(){
+        batch.dispose();
+    }
 }
